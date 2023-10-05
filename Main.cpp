@@ -14,16 +14,36 @@ void Main()
 	// 背景の色を設定する | Set the background color
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
 
-	Player p;
-	Enemy e({ Scene::Width() / 2,Scene::Height() / 2 - 100 });
+	//インスタンス　クラスから作った変数の事（クラスの実体）
+	//Player p;
+
+	Player* p = nullptr;
+	Enemy* e = nullptr;
+	////何も引数書かないと、引数なしのコンストラクタが呼ばれる
+	p = new Player;
+	//int* arr = nullptr;
+	//arr = new int[10];
+	//PlayerもEnemyもDrawとUpdateをオーバーライドしてね
+	e = new Enemy[EnemyNum];
+	//インスタンス配列を動的に取得すると引数なしのコンストラクタしか呼べない
+	for (int i = 0; i < EnemyNum; i++) {
+		//e[i].SetPosition(ごにょごにょ);
+	}
 
 	while (System::Update())
 	{
-		p.Update();
-		p.Draw();
-		e.Update();
-		e.Draw();
+		p->Update();
+		p->Draw();
+		for (int i = 0; i < EnemyNum; i++) {
+			e[i].Update();
+			e[i].Draw();
+			//(e+i)->Update();
+			//(e+i)->Draw();
+		}
+		
 	}
+	delete p;
+	delete[] e;
 }
 
 
