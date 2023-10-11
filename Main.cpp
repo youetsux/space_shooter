@@ -1,7 +1,7 @@
 ﻿# include <Siv3D.hpp> // OpenSiv3D v0.6.10
 #include "Player.h"
 #include "Enemy.h"
-
+#include "EnemyMaster.h"
 
 void Main()
 {
@@ -18,40 +18,45 @@ void Main()
 	//Player p;
 
 	Player* p = nullptr;
-	Enemy* e = nullptr;
+	//Enemy* e = nullptr;
 	////何も引数書かないと、引数なしのコンストラクタが呼ばれる
 	p = new Player;
 	//int* arr = nullptr;
 	//arr = new int[10];
 	//PlayerもEnemyもDrawとUpdateをオーバーライドしてね
-	e = new Enemy[EnemyNum];
+	//e = new Enemy[EnemyNum];
 	//インスタンス配列を動的に取得すると引数なしのコンストラクタしか呼べない
-	for(int j = 0;j<EnemyLines;j++)
-	{
-		for (int i = 0; i < EnemyInLine; i++)
-		{
-			//(i,j)で敵の座標を調整、とりあえず端から並べる
-			Vec2 chrSize = { ENEMY_CHR_SIZE, ENEMY_CHR_SIZE };
-			Vec2 enemyPos = { i * 100, j * 80 };
-			e[j * EnemyInLine + i].SetPosition(enemyPos + chrSize);
-		}
-		
-	}
+	//for(int j = 0;j<EnemyLines;j++)
+	//{
+	//	for (int i = 0; i < EnemyInLine; i++)
+	//	{
+	//		//(i,j)で敵の座標を調整、とりあえず端から並べる
+	//		Vec2 chrSize = { ENEMY_CHR_SIZE, ENEMY_CHR_SIZE };
+	//		Vec2 enemyPos = { i * 100, j * 80 };
+	//		e[j * EnemyInLine + i].SetPosition(enemyPos + chrSize);
+	//	}
+	//	
+	//}
+
+	EnemyMaster* em = new EnemyMaster;
+
 
 	while (System::Update())
 	{
 		p->Update();
 		p->Draw();
-		for (int i = 0; i < EnemyNum; i++) {
-			e[i].Update();
-			e[i].Draw();
-			//(e+i)->Update();
-			//(e+i)->Draw();
-		}
+		//for (int i = 0; i < EnemyNum; i++) {
+		//	e[i].Update();
+		//	e[i].Draw();
+		//	//(e+i)->Update();
+		//	//(e+i)->Draw();
+		//}
+		em->Update();
+		em->Draw();
 		
 	}
 	delete p;
-	delete[] e;
+	//delete[] e;
 }
 
 
