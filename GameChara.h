@@ -17,6 +17,7 @@ public:
 	//void SetAlive(bool _alive);
 	//void SetSpeed(double _speed);
 	void SetCharaRect(SizeF _size);
+	void SetPosition(Vec2 _pos);
 	virtual void Update();
 	virtual void Draw();
 };

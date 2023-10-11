@@ -26,8 +26,16 @@ void Main()
 	//PlayerもEnemyもDrawとUpdateをオーバーライドしてね
 	e = new Enemy[EnemyNum];
 	//インスタンス配列を動的に取得すると引数なしのコンストラクタしか呼べない
-	for (int i = 0; i < EnemyNum; i++) {
-		//e[i].SetPosition(ごにょごにょ);
+	for(int j = 0;j<EnemyLines;j++)
+	{
+		for (int i = 0; i < EnemyInLine; i++)
+		{
+			//(i,j)で敵の座標を調整、とりあえず端から並べる
+			Vec2 chrSize = { ENEMY_CHR_SIZE, ENEMY_CHR_SIZE };
+			Vec2 enemyPos = { i * 100, j * 80 };
+			e[j * EnemyInLine + i].SetPosition(enemyPos + chrSize);
+		}
+		
 	}
 
 	while (System::Update())

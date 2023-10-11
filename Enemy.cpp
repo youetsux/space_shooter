@@ -1,9 +1,6 @@
 ﻿#include "stdafx.h"
 #include "Enemy.h"
 
-const int ENEMY_CHR_SIZE{ 48 }; //がぞうさいず
-const double ENEMY_RECT_SIZE{ 45 }; //当たり判定用のBBのサイズ
-const double ENEMY_MOVE_SPEED{ ENEMY_CHR_SIZE * 4.5 }; //プレイヤーの動作スピード
 
 
 Enemy::Enemy(Vec2 _pos)
@@ -35,6 +32,7 @@ Enemy::Enemy()
 void Enemy::Update()
 {
 	//うごかない
+	SetCharaRect({ ENEMY_RECT_SIZE, ENEMY_RECT_SIZE });
 }
 
 void Enemy::Draw()

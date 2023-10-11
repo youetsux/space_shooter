@@ -19,6 +19,10 @@ void GameChara::SetCharaRect(SizeF _size)
 	Vec2 adjustVal = { _size.x / 2.0, _size.y / 2.0 };
 	rect_ = { pos_ - adjustVal, _size.x, _size.y };
 }
+void GameChara::SetPosition(Vec2 _pos)
+{
+	pos_ = _pos;
+}
 //とりあえず空
 void GameChara::Update()
 {
