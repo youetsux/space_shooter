@@ -16,6 +16,12 @@ void Main()
 
 	//インスタンス　クラスから作った変数の事（クラスの実体）
 	//Player p;
+	
+	//GameCharaクラスのインスタンス配列にぶち込んで、UpdateとDrawで同じ動きをするように
+	//書き換える！
+	//PlayerもEnemyも作ったら、アドレスをこいつにpush_back
+	std::vector<GameChara*> objList;
+	GameChara** objList;
 
 	Player* p = nullptr;
 	Enemy* e = nullptr;
