@@ -2,17 +2,26 @@
 #include "Player.h"
 #include "Enemy.h"
 
+namespace SIV3DMAIN
+{
+	void Initialize()
+	{
+		FontAsset::Register(U"font", FontMethod::MSDF, 48, Typeface::Bold);
+		TextureAsset::Register(U"PLAYER", U"images\\ships\\2.png");
+		TextureAsset::Register(U"ENEMY", U"images\\ships\\9.png");
+		TextureAsset::Register(U"BULLET", U"images\\shots\\1.png");
+		TextureAsset::Register(U"EXPLOSION", U"images\\effects\\fx-7.png");
+
+		// 背景の色を設定する | Set the background color
+		Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
+	}
+}
+
 
 void Main()
 {
-	FontAsset::Register(U"font", FontMethod::MSDF, 48, Typeface::Bold);
-	TextureAsset::Register(U"PLAYER", U"images\\ships\\2.png");
-	TextureAsset::Register(U"ENEMY", U"images\\ships\\9.png");
-	TextureAsset::Register(U"BULLET", U"images\\shots\\1.png");
-	TextureAsset::Register(U"EXPLOSION", U"images\\effects\\fx-7.png");
 
-	// 背景の色を設定する | Set the background color
-	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
+	SIV3DMAIN::Initialize();
 
 	std::vector<GameChara*> objList;
 	//GameChara** objList;
