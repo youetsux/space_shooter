@@ -26,10 +26,9 @@ void Main()
 
 	
 	//GameChara** objList;
+	//Enemy* e = nullptr;
 
 	Player* p = nullptr;
-	Enemy* e = nullptr;
-
 	p = new Player;
 	objList.push_back(p);
 
