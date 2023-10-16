@@ -17,13 +17,14 @@ namespace SIV3DMAIN
 	}
 }
 
+std::vector<GameChara*> objList;
 
 void Main()
 {
 
 	SIV3DMAIN::Initialize();
 
-	std::vector<GameChara*> objList;
+	
 	//GameChara** objList;
 
 	Player* p = nullptr;
