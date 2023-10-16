@@ -13,9 +13,10 @@ public:
 	GameChara(Vec2 _pos);  //コンストラクタのオーバーロード
 	GameChara();
 	~GameChara(){}
-	//void SetPos(Vec2 _pos);
-	//void SetAlive(bool _alive);
-	//void SetSpeed(double _speed);
+
+	void SetAlive(bool _alive) { isAlive_ = _alive; }
+	void SetSpeed(double _speed) { speed_ = _speed; }
+	void SetMoveDir(Vec2 _movedir) { moveDir_ = _movedir; }
 	void SetCharaRect(SizeF _size);
 	void SetPosition(Vec2 _pos);
 	virtual void Update();

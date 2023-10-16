@@ -13,7 +13,7 @@ public:
 	EnemyMaster();
 	~EnemyMaster();
 	vector<Enemy*> enemies;
-	void InitializeEnemies(vector<GameChara *>& _objList);
+	void InitializeEnemies();
 	void Update() override;
 	void Draw() override;
 	
