@@ -32,6 +32,7 @@ Enemy::Enemy()
 void Enemy::Update()
 {
 	//うごかない
+	pos_ = pos_ + moveDir_* speed_ * Scene::DeltaTime();
 	SetCharaRect({ ENEMY_RECT_SIZE, ENEMY_RECT_SIZE });
 }
 
