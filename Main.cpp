@@ -62,7 +62,6 @@ void Main()
 	for (auto& theI : objList)
 		delete theI;
 	objList.clear();
-	//delete[] e;
 }
 
 

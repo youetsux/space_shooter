@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "EnemyMaster.h"
 #include "Enemy.h"
+#include <algorithm>
 
 void EnemyMaster::SetEnemiesRect()
 {
@@ -17,6 +18,7 @@ void EnemyMaster::SetEnemiesRect()
 		if (ymax <= theI->pos_.y)
 			ymax = theI->pos_.y;
 	}
+
 	Vec2 adjustVal = { ENEMY_CHR_SIZE / 2, ENEMY_CHR_SIZE / 2 };
 	rect_ = { {Vec2{xmin, ymin} - adjustVal}, xmax - xmin + ENEMY_CHR_SIZE, ymax - ymin + ENEMY_CHR_SIZE };
 }
@@ -74,18 +76,18 @@ void EnemyMaster::Update()
 		for (auto& theI : enemies)
 			theI->SetMoveDir(-theI->moveDir_);
 	}
-	double dist = speed_ * Scene::DeltaTime();
-	Vec2 yMoveVec = { 0,0 };
-	if (rect_.x + rect_.w + dist > 800 - ENEMY_CHR_SIZE / 2)
-	{
-		moveDir_ = -moveDir_;
-		yMoveVec = { 0,ENEMY_CHR_SIZE / 4 };
-	}
-	if (rect_.x + dist < 0 + ENEMY_CHR_SIZE / 2)
-	{
-		moveDir_ = -moveDir_;
-		yMoveVec = { 0,ENEMY_CHR_SIZE / 4 };
-	}
+	//double dist = speed_ * Scene::DeltaTime();
+	//Vec2 yMoveVec = { 0,0 };
+	//if (rect_.x + rect_.w + dist > 800 - ENEMY_CHR_SIZE / 2)
+	//{
+	//	moveDir_ = -moveDir_;
+	//	yMoveVec = { 0,ENEMY_CHR_SIZE / 4 };
+	//}
+	//if (rect_.x + dist < 0 + ENEMY_CHR_SIZE / 2)
+	//{
+	//	moveDir_ = -moveDir_;
+	//	yMoveVec = { 0,ENEMY_CHR_SIZE / 4 };
+	//}
 	SetEnemiesRect();
 
 }

@@ -2,12 +2,9 @@
 #include "Enemy.h"
 
 
-
 Enemy::Enemy(Vec2 _pos)
 	:GameChara()
 {
-	//Vec2 chrMargin{ 0, Scene::Height() / 2 + ENEMY_CHR_SIZE * 2 };
-	//pos_ = Scene::Center() + chrMargin;
 	pos_ = _pos;
 	speed_ = ENEMY_MOVE_SPEED;
 	tex_ = TextureAsset(U"ENEMY");
@@ -19,8 +16,6 @@ Enemy::Enemy(Vec2 _pos)
 Enemy::Enemy()
 	:GameChara()
 {
-	//Vec2 chrMargin{ 0, Scene::Height() / 2 + ENEMY_CHR_SIZE * 2 };
-	//pos_ = Scene::Center() + chrMargin;
 	pos_ = Scene::Center();
 	speed_ = ENEMY_MOVE_SPEED;
 	tex_ = TextureAsset(U"ENEMY");
@@ -31,7 +26,6 @@ Enemy::Enemy()
 
 void Enemy::Update()
 {
-	//うごかない
 	pos_ = pos_ + moveDir_* speed_ * Scene::DeltaTime();
 	SetCharaRect({ ENEMY_RECT_SIZE, ENEMY_RECT_SIZE });
 }
