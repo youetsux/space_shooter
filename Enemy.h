@@ -14,6 +14,8 @@ class Enemy :
 public:
 	Enemy(Vec2 _pos);
 	Enemy();
+	void FlipMove() { moveDir_ = -moveDir_; }
+	void MoveDown();
 	void Update() override;
 	void Draw() override;
 };

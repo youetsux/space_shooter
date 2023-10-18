@@ -76,18 +76,11 @@ void EnemyMaster::Update()
 		for (auto& theI : enemies)
 			theI->SetMoveDir(-theI->moveDir_);
 	}
-	//double dist = speed_ * Scene::DeltaTime();
-	//Vec2 yMoveVec = { 0,0 };
-	//if (rect_.x + rect_.w + dist > 800 - ENEMY_CHR_SIZE / 2)
-	//{
-	//	moveDir_ = -moveDir_;
-	//	yMoveVec = { 0,ENEMY_CHR_SIZE / 4 };
-	//}
-	//if (rect_.x + dist < 0 + ENEMY_CHR_SIZE / 2)
-	//{
-	//	moveDir_ = -moveDir_;
-	//	yMoveVec = { 0,ENEMY_CHR_SIZE / 4 };
-	//}
+	if (KeyDown.down())
+	{
+		for (auto& theI : enemies)
+			theI->MoveDown();
+	}
 	SetEnemiesRect();
 
 }
