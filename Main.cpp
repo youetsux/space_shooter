@@ -2,6 +2,8 @@
 #include "Player.h"
 //#include "Enemy.h"
 #include "EnemyMaster.h";
+#include "Bullet.h"
+
 namespace SIV3DMAIN
 {
 	void Initialize()
@@ -9,7 +11,7 @@ namespace SIV3DMAIN
 		FontAsset::Register(U"font", FontMethod::MSDF, 48, Typeface::Bold);
 		TextureAsset::Register(U"PLAYER", U"images\\ships\\2.png");
 		TextureAsset::Register(U"ENEMY", U"images\\ships\\9.png");
-		TextureAsset::Register(U"BULLET", U"images\\shots\\1.png");
+		TextureAsset::Register(U"BULLET", U"images\\shots\\3.png");
 		TextureAsset::Register(U"EXPLOSION", U"images\\effects\\fx-7.png");
 
 		// 背景の色を設定する | Set the background color
@@ -36,6 +38,8 @@ void Main()
 	em->InitializeEnemies();
 	objList.push_back(em);
 
+	Bullet* b = new Bullet({ Scene::Center().x, Scene::Height() });
+	objList.push_back(b);
 
 	while (System::Update())
 	{
