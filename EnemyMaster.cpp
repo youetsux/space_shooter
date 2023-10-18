@@ -45,17 +45,15 @@ void EnemyMaster::InitializeEnemies()
 		}
 	}
 
-	
 	const int W_MARGIN{ ENEMY_CHR_SIZE/3 };
 	const int H_MARGIN{ ENEMY_CHR_SIZE/10 };
 	
-	//Vec2 Lmargin = { (Scene::Width() - ENEMY_CHR_SIZE * EnemyInLine) / 2.0, ENEMY_CHR_SIZE };
-
 	for (int j = 0; j < EnemyLines; j++) {
 		for (int i = 0; i < EnemyInLine; i++) {
 			enemies[j * EnemyInLine + i]->speed_ = ENEMY_MOVE_SPEED;
-			enemies[j * EnemyInLine + i]->pos_
-				= Vec2{ i * (ENEMY_CHR_SIZE + H_MARGIN), j * (ENEMY_CHR_SIZE + W_MARGIN)} + Vec2{ENEMY_CHR_SIZE, ENEMY_CHR_SIZE}/2;
+			enemies[j * EnemyInLine + i]->pos_ //並べて、半キャラ分位置合わせ
+				= Vec2{ i * (ENEMY_CHR_SIZE + H_MARGIN), j * (ENEMY_CHR_SIZE + W_MARGIN)}
+			      + Vec2{ENEMY_CHR_SIZE, ENEMY_CHR_SIZE}/2;
 			enemies[j * EnemyInLine + i]->isAlive_ = true;
 			enemies[j * EnemyInLine + i]->tex_ = TextureAsset(U"ENEMY");
 			enemies[j * EnemyInLine + i]->moveDir_ = { 1.0, 0.0 };
