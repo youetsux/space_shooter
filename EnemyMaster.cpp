@@ -35,26 +35,27 @@ EnemyMaster::~EnemyMaster()
 
 void EnemyMaster::InitializeEnemies()
 {
+
 	for (int j = 0; j < EnemyLines; j++)
 	{
 		for (int i = 0; i < EnemyInLine; i++)
 		{
-			//(i,j)で敵の座標を調整、とりあえず端から並べる
-			Vec2 chrSize = { ENEMY_CHR_SIZE, ENEMY_CHR_SIZE };
-			Vec2 enemyPos = { i * 100, j * 80 };
-			//e[j * EnemyInLine + i].SetPosition();
-			Enemy *e = new Enemy(enemyPos + chrSize);
+			Enemy* e = new Enemy;
 			enemies.push_back(e);
 		}
 	}
 
-	Vec2 Mmargin = { ENEMY_CHR_SIZE / 3.0, 0 };
-	Vec2 Lmargin = { (Scene::Width() - ENEMY_CHR_SIZE * EnemyInLine) / 2.0, ENEMY_CHR_SIZE };
+	
+	const int W_MARGIN{ ENEMY_CHR_SIZE/3 };
+	const int H_MARGIN{ ENEMY_CHR_SIZE/10 };
+	
+	//Vec2 Lmargin = { (Scene::Width() - ENEMY_CHR_SIZE * EnemyInLine) / 2.0, ENEMY_CHR_SIZE };
 
 	for (int j = 0; j < EnemyLines; j++) {
 		for (int i = 0; i < EnemyInLine; i++) {
 			enemies[j * EnemyInLine + i]->speed_ = ENEMY_MOVE_SPEED;
-			enemies[j * EnemyInLine + i]->pos_ = Lmargin + Vec2{ i * (ENEMY_CHR_SIZE + Mmargin.x), j * ENEMY_CHR_SIZE };
+			enemies[j * EnemyInLine + i]->pos_
+				= Vec2{ i * (ENEMY_CHR_SIZE + H_MARGIN), j * (ENEMY_CHR_SIZE + W_MARGIN)} + Vec2{ENEMY_CHR_SIZE, ENEMY_CHR_SIZE}/2;
 			enemies[j * EnemyInLine + i]->isAlive_ = true;
 			enemies[j * EnemyInLine + i]->tex_ = TextureAsset(U"ENEMY");
 			enemies[j * EnemyInLine + i]->moveDir_ = { 1.0, 0.0 };
@@ -74,7 +75,7 @@ void EnemyMaster::Update()
 	if (KeySpace.down())
 	{
 		for (auto& theI : enemies)
-			theI->SetMoveDir(-theI->moveDir_);
+			theI->FlipMove();
 	}
 	if (KeyDown.down())
 	{

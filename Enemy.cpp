@@ -26,7 +26,7 @@ Enemy::Enemy()
 
 void Enemy::MoveDown()
 {
-	Vec2 yMoveVec = { 0,ENEMY_CHR_SIZE / 4 };
+	Vec2 yMoveVec = { 0, ENEMY_CHR_SIZE / 4 };
 	pos_ = pos_ + yMoveVec;
 }
 
