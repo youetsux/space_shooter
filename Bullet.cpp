@@ -11,6 +11,16 @@ Bullet::Bullet(Vec2 _pos)
 	isAlive_ = true;
 }
 
+Bullet::Bullet()
+	:GameChara(BULLET_INIT_POS)
+{
+	speed_ = BULLET_MOVE_SPEED;
+	tex_ = TextureAsset(U"BULLET");
+	SetCharaRect(SizeF{ BULLET_RECT_SIZE, BULLET_RECT_SIZE });
+	moveDir_ = { 0, -1 };
+	isAlive_ = false;
+}
+
 void Bullet::Update()
 {
 	if (isAlive_) {
@@ -19,7 +29,7 @@ void Bullet::Update()
 	}
 	if (pos_.y < 0) {
 		isAlive_ = false;
-		pos_.y = Scene::Height() + 50;
+		pos_ = BULLET_INIT_POS;
 	}
 }
 

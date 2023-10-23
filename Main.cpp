@@ -32,14 +32,15 @@ void Main()
 
 	Player* p = nullptr;
 	p = new Player;
+	p->Initialize();
 	objList.push_back(p);
 
 	EnemyMaster* em = new EnemyMaster;
 	em->InitializeEnemies();
 	objList.push_back(em);
 
-	Bullet* b = new Bullet({ Scene::Center().x, Scene::Height() });
-	objList.push_back(b);
+	//Bullet* b = new Bullet({ Scene::Center().x, Scene::Height() });
+	//objList.push_back(b);
 
 	while (System::Update())
 	{
@@ -49,6 +50,7 @@ void Main()
 			theI->Draw();
 	}
 
+	//p->Release();
 	for (auto& theI : objList)
 		delete theI;
 	objList.clear();

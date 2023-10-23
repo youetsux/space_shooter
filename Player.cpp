@@ -1,6 +1,17 @@
 ﻿#include "stdafx.h"
 #include "Player.h"
 
+
+int Player::GetBlankBullet()
+{
+	for (int i = 0; i < PLAYER_MAX_BULLET_NUM; i++)
+	{
+		if (Gun_[i]->isAlive_ == false)
+			return i;
+	}
+	return PLAYER_MAX_BULLET_NUM;
+}
+
 Player::Player()
 	:GameChara()
 {
@@ -11,6 +22,16 @@ Player::Player()
 	SetCharaRect(SizeF{ PLAYER_RECT_SIZE,PLAYER_RECT_SIZE });
 	moveDir_ = { 0, 0 };
 	isAlive_ = true;
+}
+
+void Player::Initialize()
+{
+	for (int i = 0; i < PLAYER_MAX_BULLET_NUM; i++)
+	{
+		Bullet* p = nullptr;
+		p = new Bullet();
+		Gun_.push_back(p); //Releaseでdeleteしてね
+	}
 }
 
 direction Player::GetDirection()
@@ -37,6 +58,20 @@ direction Player::GetDirection()
 
 void Player::Update()
 {   //寿命短い変数は名前も少し適当でいいよ
+	if (KeyB.down())
+	{
+		int num = GetBlankBullet();
+		if (num != PLAYER_MAX_BULLET_NUM)
+		{
+			Gun_[num]->isAlive_ = true;
+			Gun_[num]->SetPosition(pos_);
+			//ここのpos_はプレイヤーの位置
+		}
+	}
+	for (auto& theI : Gun_) {
+		theI->Update();
+	}
+
 	direction d = GetDirection();
 	switch (d)
 	{
@@ -51,6 +86,8 @@ void Player::Update()
 	}
 	pos_ = pos_ + speed_ * Scene::DeltaTime() * moveDir_;
 	SetCharaRect(SizeF{ PLAYER_RECT_SIZE,PLAYER_RECT_SIZE });
+
+
 }
 
 void Player::Draw()
@@ -58,5 +95,8 @@ void Player::Draw()
 	if (isAlive_) {
 		tex_.resized(PLAYER_CHR_SIZE).drawAt(pos_);
 		rect_.drawFrame(1, 1, Palette::Red);
+	}
+	for (auto& theI : Gun_){
+			theI->Draw();
 	}
 }
