@@ -47,19 +47,20 @@ void EnemyMaster::InitializeEnemies()
 		}
 	}
 
-	const int W_MARGIN{ ENEMY_CHR_SIZE/3 };
-	const int H_MARGIN{ ENEMY_CHR_SIZE/10 };
+	const int W_MARGIN{ ENEMY_CHR_SIZE / 3 };
+	const int H_MARGIN{ ENEMY_CHR_SIZE / 10 };
+	const int CENTER = Scene::Width() / 4;
 	//敵の一匹一匹を、通し番号から、行、列の2次元座標に変換して並べる作業
 	for (int j = 0; j < EnemyLines; j++) {
 		for (int i = 0; i < EnemyInLine; i++) {
 			enemies[j * EnemyInLine + i]->speed_ = ENEMY_MOVE_SPEED;
 			enemies[j * EnemyInLine + i]->pos_ //並べて、半キャラ分位置合わせ
-				= Vec2{ i * (ENEMY_CHR_SIZE + H_MARGIN), j * (ENEMY_CHR_SIZE + W_MARGIN)}
-			      + Vec2{ENEMY_CHR_SIZE, ENEMY_CHR_SIZE}/2;
+				= Vec2{ i * (ENEMY_CHR_SIZE + H_MARGIN), j * (ENEMY_CHR_SIZE + W_MARGIN) }
+			+ Vec2{ ENEMY_CHR_SIZE, ENEMY_CHR_SIZE } / 2 + Vec2{ CENTER,0 };
 			enemies[j * EnemyInLine + i]->isAlive_ = true;
 			enemies[j * EnemyInLine + i]->tex_ = TextureAsset(U"ENEMY");
 			enemies[j * EnemyInLine + i]->moveDir_ = { 1.0, 0.0 };
-			enemies[j * EnemyInLine + i]->SetCharaRect(Size{ ENEMY_CHR_SIZE, ENEMY_CHR_SIZE});
+			enemies[j * EnemyInLine + i]->SetCharaRect(Size{ ENEMY_CHR_SIZE, ENEMY_CHR_SIZE });
 		}
 	}
 
@@ -73,20 +74,21 @@ void EnemyMaster::InitializeEnemies()
 //するように変更！
 void EnemyMaster::Update()
 {
+	const float SWidth = Scene::Width();
+	const float SHeight = Scene::Height();
+	const float WMargin = 50;
+
+
+	if (rect_.x <= WMargin || rect_.x + rect_.w >= SWidth - WMargin)
+	{
+		for (auto& theI : enemies) {
+			theI->FlipMove();
+			theI->MoveDown();
+		}
+	}
+
 	for (auto& theI : enemies)
 		theI->Update();
-	if (KeySpace.down())
-	{
-		//for (int i = 0; i < enemies.size(); i++)
-		//	enemies[i]->FlipMove();
-		for (auto& theI : enemies)
-			theI->FlipMove();
-	}
-	if (KeyDown.down())
-	{
-		for (auto& theI : enemies)
-			theI->MoveDown();
-	}
 	SetEnemiesRect();//全体枠（黄色）を再設定
 }
 

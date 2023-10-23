@@ -26,21 +26,15 @@ void Main()
 
 	SIV3DMAIN::Initialize();
 
-	
-	//GameChara** objList;
-	//Enemy* e = nullptr;
+	EnemyMaster* em = new EnemyMaster;
+	em->InitializeEnemies();
+	objList.push_back(em);
 
 	Player* p = nullptr;
 	p = new Player;
 	p->Initialize();
 	objList.push_back(p);
 
-	EnemyMaster* em = new EnemyMaster;
-	em->InitializeEnemies();
-	objList.push_back(em);
-
-	//Bullet* b = new Bullet({ Scene::Center().x, Scene::Height() });
-	//objList.push_back(b);
 
 	while (System::Update())
 	{

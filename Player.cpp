@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "Player.h"
 
+extern std::vector<GameChara*> objList;
 
 int Player::GetBlankBullet()
 {
@@ -99,4 +100,21 @@ void Player::Draw()
 	for (auto& theI : Gun_){
 			theI->Draw();
 	}
+}
+
+bool Player::IsMyRectHit(RectF _rect)
+{
+	float wAB = rect_.w / 2.0 + _rect.w / 2.0;
+	float hAB = rect_.h / 2.0 + _rect.h / 2.0;
+	float distx = abs(rect_.center().x - _rect.center().x);
+	float disty = abs(rect_.center().y - _rect.center().y);
+	if (wAB > distx && hAB > disty)
+		return true;
+	else
+		return false;
+}
+
+void Player::MyGunVSEnemies()
+{
+	
 }

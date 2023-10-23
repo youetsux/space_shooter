@@ -33,7 +33,9 @@ public:
 	void Update() override;
 	void Draw() override;
 	//ここでやる？
-	void MyGunVSEnemies(EnemyMaster& em);
+	bool IsMyRectHit(RectF _rect);
+	void MyGunVSEnemies();
+	//さてどうやって、ベースクラスのリストからエネミーマスター探そうかなぁ。。。
 };
 
 //当たり判定をどこでやろうね？
