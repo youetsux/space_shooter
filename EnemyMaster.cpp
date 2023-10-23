@@ -35,7 +35,9 @@ EnemyMaster::~EnemyMaster()
 
 void EnemyMaster::InitializeEnemies()
 {
-
+	//行、列分の敵キャラを生成
+	//EnemyLinesは敵が何行存在するか→（行）
+	//EnemyInLineは１行に敵が何匹居るか↓↓↓（列）
 	for (int j = 0; j < EnemyLines; j++)
 	{
 		for (int i = 0; i < EnemyInLine; i++)
@@ -47,7 +49,7 @@ void EnemyMaster::InitializeEnemies()
 
 	const int W_MARGIN{ ENEMY_CHR_SIZE/3 };
 	const int H_MARGIN{ ENEMY_CHR_SIZE/10 };
-	
+	//敵の一匹一匹を、通し番号から、行、列の2次元座標に変換して並べる作業
 	for (int j = 0; j < EnemyLines; j++) {
 		for (int i = 0; i < EnemyInLine; i++) {
 			enemies[j * EnemyInLine + i]->speed_ = ENEMY_MOVE_SPEED;
@@ -66,12 +68,17 @@ void EnemyMaster::InitializeEnemies()
 	moveDir_ = { 1.0, 0.0 };//枠の移動方向も、エネミー個体と同じ
 }
 
+//今はキーボードで左右に敵が動いているけど、
+//画面端まで敵がたどり着いたら、自動で向きをフリップ
+//するように変更！
 void EnemyMaster::Update()
 {
 	for (auto& theI : enemies)
 		theI->Update();
 	if (KeySpace.down())
 	{
+		//for (int i = 0; i < enemies.size(); i++)
+		//	enemies[i]->FlipMove();
 		for (auto& theI : enemies)
 			theI->FlipMove();
 	}
@@ -80,8 +87,7 @@ void EnemyMaster::Update()
 		for (auto& theI : enemies)
 			theI->MoveDown();
 	}
-	SetEnemiesRect();
-
+	SetEnemiesRect();//全体枠（黄色）を再設定
 }
 
 void EnemyMaster::Draw()

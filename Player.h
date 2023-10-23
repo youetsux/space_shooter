@@ -15,6 +15,8 @@ enum direction
 	UP, LEFT, DOWN, RIGHT, NONE
 };
 
+class EnemyMaster;
+//エラー出たら#include "EnemyMaster.h"したほうがいいね。
 
 class Player :
     public GameChara
@@ -23,12 +25,15 @@ class Player :
 	int GetBlankBullet();
 public:
 	Player();
-	~Player();
+	~Player();//解放処理ここでやる？
 	//Player(int _maxBullet);
 	void Initialize();
-	void Release();
+	void Release();//それともここでやる？
 	direction GetDirection();
 	void Update() override;
 	void Draw() override;
+	//ここでやる？
+	void MyGunVSEnemies(EnemyMaster& em);
 };
 
+//当たり判定をどこでやろうね？
