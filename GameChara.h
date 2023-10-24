@@ -23,6 +23,8 @@ public:
 	void SetMoveDir(Vec2 _movedir) { moveDir_ = _movedir; }
 	void SetCharaRect(SizeF _size);
 	void SetPosition(Vec2 _pos);
+	RectF GetCharaRect() { return rect_; }//これを追加
+	bool IsMyRectHit(RectF _rect);
 	virtual void Update();
 	virtual void Draw();
 };

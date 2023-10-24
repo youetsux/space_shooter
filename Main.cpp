@@ -1,6 +1,6 @@
 ﻿# include <Siv3D.hpp> // OpenSiv3D v0.6.10
 #include "Player.h"
-//#include "Enemy.h"
+#include "Enemy.h"
 #include "EnemyMaster.h";
 #include "Bullet.h"
 
@@ -20,6 +20,12 @@ namespace SIV3DMAIN
 }
 
 std::vector<GameChara*> objList;
+//mainは何のクラス作ったかわかるので、ここでやっちゃうパターン
+//当たり判定でやるのは、次のアップデートのためにそれぞれのisAliveを更新すること
+//各エネミーのrect_にアクセスできないとダメなのでGameCharaクラスにGetCharaRectを作成
+//プレイヤーのGunの中にある弾丸にアクセスできないとダメなので、GetGunBulletを作成
+//当たり判定は、すべてのキャラがする可能性があるから、GameChara型のメンバー化
+void PlayerVSEnemies(Player* p, EnemyMaster* em);
 
 void Main()
 {
@@ -50,4 +56,14 @@ void Main()
 	objList.clear();
 }
 
-
+void PlayerVSEnemies(Player* p, EnemyMaster* em)
+{
+	for(auto& theJ: p->GetGunBullet())
+	for (auto& theI : em->enemies)
+	{
+		if (theJ->IsMyRectHit(theI->GetCharaRect()))
+		{
+			
+		}
+	}
+}

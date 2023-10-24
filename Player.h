@@ -33,8 +33,7 @@ public:
 	void Update() override;
 	void Draw() override;
 	//ここでやる？
-	bool IsMyRectHit(RectF _rect);
-	void MyGunVSEnemies();
+	vector<Bullet*> GetGunBullet() { return Gun_; }
 	//さてどうやって、ベースクラスのリストからエネミーマスター探そうかなぁ。。。
 };
 

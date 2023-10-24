@@ -32,3 +32,15 @@ void GameChara::Draw()
 {
 	Print << U"GC Draw";
 }
+
+bool GameChara::IsMyRectHit(RectF _rect)
+{
+	float wAB = rect_.w / 2.0 + _rect.w / 2.0;
+	float hAB = rect_.h / 2.0 + _rect.h / 2.0;
+	float distx = abs(rect_.center().x - _rect.center().x);
+	float disty = abs(rect_.center().y - _rect.center().y);
+	if (wAB > distx && hAB > disty)
+		return true;
+	else
+		return false;
+}
