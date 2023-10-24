@@ -1,7 +1,7 @@
 ﻿# include <Siv3D.hpp> // OpenSiv3D v0.6.10
 #include "Player.h"
 #include "Enemy.h"
-#include "EnemyMaster.h";
+#include "EnemyMaster.h"
 #include "Bullet.h"
 
 namespace SIV3DMAIN
@@ -44,6 +44,7 @@ void Main()
 
 	while (System::Update())
 	{
+		PlayerVSEnemies(p, em);//ココだけ我慢して、そのままのポインタ使う（妥協の極み）
 		for (auto& theI : objList)
 			theI->Update();
 		for (auto& theI : objList)
@@ -58,12 +59,19 @@ void Main()
 
 void PlayerVSEnemies(Player* p, EnemyMaster* em)
 {
-	for(auto& theJ: p->GetGunBullet())
-	for (auto& theI : em->enemies)
+	for (auto& theJ : p->GetGunBullet())
 	{
-		if (theJ->IsMyRectHit(theI->GetCharaRect()))
+		if (!theJ->isActive())
+			continue;
+		for (auto& theI : em->enemies)
 		{
-			
+			if (!theI->isActive())
+				continue;
+			if (theJ->IsMyRectHit(theI->GetCharaRect()))
+			{
+				theJ->DeActivateMe();
+				theI->DeActivateMe();
+			}
 		}
 	}
 }

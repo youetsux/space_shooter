@@ -24,6 +24,9 @@ public:
 	void SetCharaRect(SizeF _size);
 	void SetPosition(Vec2 _pos);
 	RectF GetCharaRect() { return rect_; }//これを追加
+	bool isActive() { return isAlive_; }//isAliveがtrueかどうか
+	void DeActivateMe() { isAlive_ = false; }
+	void ActivateMe() { isAlive_ = true; }
 	bool IsMyRectHit(RectF _rect);
 	virtual void Update();
 	virtual void Draw();

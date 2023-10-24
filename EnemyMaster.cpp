@@ -9,14 +9,17 @@ void EnemyMaster::SetEnemiesRect()
 	float ymin = Scene::Height(), ymax = 0;
 	for (auto& theI : enemies)
 	{
-		if (xmin > theI->pos_.x)
-			xmin = theI->pos_.x;
-		if (ymin > theI->pos_.y)
-			ymin = theI->pos_.y;
-		if (xmax <= theI->pos_.x)
-			xmax = theI->pos_.x;
-		if (ymax <= theI->pos_.y)
-			ymax = theI->pos_.y;
+		if (theI->isActive())
+		{
+			if (xmin > theI->pos_.x)
+				xmin = theI->pos_.x;
+			if (ymin > theI->pos_.y)
+				ymin = theI->pos_.y;
+			if (xmax <= theI->pos_.x)
+				xmax = theI->pos_.x;
+			if (ymax <= theI->pos_.y)
+				ymax = theI->pos_.y;
+		}
 	}
 
 	Vec2 adjustVal = { ENEMY_CHR_SIZE / 2, ENEMY_CHR_SIZE / 2 };
