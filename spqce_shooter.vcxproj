@@ -122,6 +122,7 @@
     <ClCompile Include="GameChara.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SpriteAnime.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -327,6 +328,7 @@
     <ClInclude Include="ExplosionEffect.h" />
     <ClInclude Include="GameChara.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SpriteAnime.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
