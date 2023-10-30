@@ -11,3 +11,17 @@ ExplosionEffect::ExplosionEffect(Vec2 _pos)
 	moveDir_ = { 1, 0 };
 	isAlive_ = true;
 }
+
+void ExplosionEffect::Draw()
+{
+	if(isAlive_)
+		tex_(96, 48, 48, 48).resized(48,48).drawAt(pos_);
+}
+
+void ExplosionEffect::Update()
+{
+	if (CDTimer_ < 0)
+		isAlive_ = false;
+	else
+		CDTimer_ = CDTimer_ - Scene::DeltaTime();
+}

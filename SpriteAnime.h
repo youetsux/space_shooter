@@ -28,7 +28,7 @@ class SpriteAnime :
 {
 	int frameNum;//今のアニメフレームは何フレーム目？
 public:
-	SpriteAnime(Texture _tex, double _interva);
+	SpriteAnime(Texture _tex);
 	~SpriteAnime();//解放処理ここでやる？
 	CDTIMER timer;
 	vector<RectF> frames_;

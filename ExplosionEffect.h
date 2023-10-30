@@ -13,5 +13,7 @@ class ExplosionEffect :
 public:
 	ExplosionEffect(Vec2 _pos);
 	~ExplosionEffect(){}
+	void Draw() override;
+	void Update() override;
 };
 

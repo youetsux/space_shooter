@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "SpriteAnime.h"
 
-SpriteAnime::SpriteAnime(Texture _tex, double _interval)
+SpriteAnime::SpriteAnime(Texture _tex)
 {
 	tex_ = _tex;
 }
