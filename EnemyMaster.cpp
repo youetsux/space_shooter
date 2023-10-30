@@ -100,5 +100,5 @@ void EnemyMaster::Draw()
 	for (auto& theI : enemies) {
 		theI->Draw();
 	}
-	rect_.drawFrame(1, 1, Palette::Yellow);
+	//rect_.drawFrame(1, 1, Palette::Yellow);
 }
