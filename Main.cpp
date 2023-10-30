@@ -13,6 +13,8 @@ namespace SIV3DMAIN
 		TextureAsset::Register(U"ENEMY", U"images\\ships\\9.png");
 		TextureAsset::Register(U"BULLET", U"images\\shots\\3.png");
 		TextureAsset::Register(U"EXPLOSION", U"images\\effects\\fx-7.png");
+		TextureAsset::Register(U"BGIMAGE", U"images\\bg.png");
+
 
 		// 背景の色を設定する | Set the background color
 		Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
@@ -47,6 +49,9 @@ void Main()
 		PlayerVSEnemies(p, em);//ココだけ我慢して、そのままのポインタ使う（妥協の極み）
 		for (auto& theI : objList)
 			theI->Update();
+
+		//背景描画
+		TextureAsset(U"BGIMAGE").resized(Scene::Size()).draw();
 		for (auto& theI : objList)
 			theI->Draw();
 	}

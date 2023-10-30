@@ -59,7 +59,7 @@ void EnemyMaster::InitializeEnemies()
 			enemies[j * EnemyInLine + i]->speed_ = ENEMY_MOVE_SPEED;
 			enemies[j * EnemyInLine + i]->pos_ //並べて、半キャラ分位置合わせ
 				= Vec2{ i * (ENEMY_CHR_SIZE + H_MARGIN), j * (ENEMY_CHR_SIZE + W_MARGIN) }
-			+ Vec2{ ENEMY_CHR_SIZE, ENEMY_CHR_SIZE } / 2 + Vec2{ CENTER,0 };
+			+ Vec2{ ENEMY_CHR_SIZE, ENEMY_CHR_SIZE } / 2 + Vec2{ CENTER, ENEMY_CHR_SIZE};
 			enemies[j * EnemyInLine + i]->isAlive_ = true;
 			enemies[j * EnemyInLine + i]->tex_ = TextureAsset(U"ENEMY");
 			enemies[j * EnemyInLine + i]->moveDir_ = { 1.0, 0.0 };

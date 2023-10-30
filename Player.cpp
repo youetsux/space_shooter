@@ -16,7 +16,7 @@ int Player::GetBlankBullet()
 Player::Player()
 	:GameChara()
 {
-	Vec2 chrMargin{ 0, Scene::Height() / 2 - PLAYER_CHR_SIZE * 2 };
+	Vec2 chrMargin{ 0, Scene::Height() / 2 - PLAYER_CHR_SIZE };
 	pos_ = Scene::Center() + chrMargin;
 	speed_ = PLAYER_MOVE_SPEED;
 	tex_ = TextureAsset(U"PLAYER");
