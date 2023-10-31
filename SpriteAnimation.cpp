@@ -45,20 +45,21 @@ void SpriteAnimation::InitializeFrame(Texture& _tex, vector<RectF> _frames)
 
 void SpriteAnimation::Update()
 {
-	if (isActive()) {
-		if (timer_.IsTimeOver()) {
-			if (NeedsFrameRefresh())
-				frameNum_++;
-			if (frameNum_ >= maxFrame_) {
-				frameNum_ = 0;
-				if (!isRepeated_)
-					DeActivateMe();
-			}
-			timer_.ResetTimer();
+	if (!isActive())
+		return;
+
+	if (timer_.IsTimeOver()) {
+		if (NeedsFrameRefresh())
+			frameNum_++;
+		if (frameNum_ >= maxFrame_) {
+			frameNum_ = 0;
+			if (!isRepeated_)
+				DeActivateMe();
 		}
-		else
-			timer_.Update();
+		timer_.ResetTimer();
 	}
+	else
+		timer_.Update();
 }
 
 void SpriteAnimation::Draw()
