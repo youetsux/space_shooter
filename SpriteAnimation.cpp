@@ -66,6 +66,7 @@ void SpriteAnimation::Draw()
 {
 	if(isActive())
 		tex_(frameRects_[frameNum_]).resized(frameRects_[frameNum_].size).drawAt(pos_);
+	validate();
 	//rect_.drawFrame(1, 1, Palette::Red);
 
 }

@@ -14,6 +14,7 @@ class SpriteAnimation :
 	int maxFrame_;
 	CDTIMER timer_;
 	bool isRepeated_;
+	bool isValidated_;//更新しなきゃないかどうか
 public:
 	SpriteAnimation(int _max_frame, double _interval);
 	void InitializeFrame(SizeF _size);//横並びで枚数が決まってるときはこれでいける
@@ -23,6 +24,9 @@ public:
 	void SetTexture(Texture& _tex) { tex_ = _tex; }
 	void RepeatOn() { isRepeated_ = true; }
 	void RepeatOff() { isRepeated_ = false; }
+	void ValidateFrame() { isValidated_ = true; }
+	void InValidateFrame() { isValidated_ = false; }
+	bool NeedsFrameRefresh() { return(isValidated_); }
 	void Update() override;
 	void Draw() override;
 };
