@@ -2,6 +2,8 @@
 #include "GameChara.h"
 #include <vector>
 #include "CDTimer.h"
+#include "SpriteAnimation.h"
+
 using std::vector;
 
 const int EXPLOSION_CHR_SIZE{ 48 }; //がぞうさいず
@@ -14,9 +16,7 @@ const double ANIME_INTERVAL{ 1 / 10.0 };
 class ExplosionEffect :
     public GameChara
 {
-	int frameNum;//今のアニメフレームは何フレーム目？
-	CDTIMER CDTimer_;
-	vector<RectF> frames_;
+	SpriteAnimation animeTex_;
 public:
 	ExplosionEffect(Vec2 _pos);
 	~ExplosionEffect(){}

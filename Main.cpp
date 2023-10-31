@@ -75,8 +75,8 @@ void PlayerVSEnemies(Player* p, EnemyMaster* em)
 				continue;
 			if (theJ->IsMyRectHit(theI->GetCharaRect()))
 			{
-				ExplosionEffect* p = new ExplosionEffect(theI->pos_);
-				objList.push_back(p);
+				ExplosionEffect* eff = new ExplosionEffect(theI->pos_);
+				objList.push_back(eff);
 				theJ->DeActivateMe();
 				theI->DeActivateMe();
 			}
