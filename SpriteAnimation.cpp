@@ -3,7 +3,7 @@
 
 
 SpriteAnimation::SpriteAnimation(int _max_frame, double _interval)
-	:GameChara(),frameNum_(0),timer_(_interval),maxFrame_(_max_frame)
+	:GameChara(), frameNum_(0), timer_(_interval), maxFrame_(_max_frame)
 {
 	ActivateMe();
 }
@@ -11,7 +11,7 @@ SpriteAnimation::SpriteAnimation(int _max_frame, double _interval)
 //自分で、textureセットしたとき用（横並びの画像）
 void SpriteAnimation::InitializeFrame(SizeF _size)
 {
-	
+
 	RectF tmp;
 	for (int i = 0; i < maxFrame_; i++)
 	{
@@ -47,13 +47,12 @@ void SpriteAnimation::Update()
 {
 	if (isActive()) {
 		if (timer_.IsTimeOver()) {
-			frameNum_ = (frameNum_ + 1);
-			{
-				if (frameNum_ >= maxFrame_) {
-					frameNum_ = 0;
-					if(!isRepeated_)
-						DeActivateMe();
-				}
+			if (NeedsFrameRefresh())
+				frameNum_++;
+			if (frameNum_ >= maxFrame_) {
+				frameNum_ = 0;
+				if (!isRepeated_)
+					DeActivateMe();
 			}
 			timer_.ResetTimer();
 		}
@@ -64,9 +63,9 @@ void SpriteAnimation::Update()
 
 void SpriteAnimation::Draw()
 {
-	if(isActive())
+	if (isActive())
 		tex_(frameRects_[frameNum_]).resized(frameRects_[frameNum_].size).drawAt(pos_);
-	validate();
+	ValidateFrame();
 	//rect_.drawFrame(1, 1, Palette::Red);
 
 }

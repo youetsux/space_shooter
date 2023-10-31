@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "GameChara.h"
 
-const double DEF_ANIME_INTERVAL{ 1 / 24.0 };
+const double DEF_ANIME_INTERVAL{ 1 / 15.0 };
 
 class CDTIMER :
     public GameChara

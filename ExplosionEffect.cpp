@@ -20,7 +20,7 @@ ExplosionEffect::ExplosionEffect(Vec2 _pos)
 	speed_ = 0;
 	tex_ = TextureAsset(U"EXPLOSION");
 	animeTex_.InitializeFrame(tex_, fs);
-	animeTex_.RepeatOff();
+	animeTex_.RepeatOn();
 	animeTex_.SetPosition(pos_);
 	SetCharaRect(EXPLOSION_RECT_SIZE);
 	moveDir_ = { 1, 0 };
