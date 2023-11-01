@@ -13,7 +13,7 @@ ExplosionEffect::ExplosionEffect(Vec2 _pos)
 			{EXPLOSION_RECT_SIZE.x * 0,EXPLOSION_RECT_SIZE.y * 2,EXPLOSION_RECT_SIZE},
 			{EXPLOSION_RECT_SIZE.x * 1,EXPLOSION_RECT_SIZE.y * 2,EXPLOSION_RECT_SIZE},
 			{EXPLOSION_RECT_SIZE.x * 2,EXPLOSION_RECT_SIZE.y * 2,EXPLOSION_RECT_SIZE} };
-
+	frameNum = 0;
 	pos_ = _pos;
 	speed_ = 0;
 	tex_ = TextureAsset(U"EXPLOSION");

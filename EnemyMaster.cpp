@@ -26,6 +26,16 @@ void EnemyMaster::SetEnemiesRect()
 	rect_ = { {Vec2{xmin, ymin} - adjustVal}, xmax - xmin + ENEMY_CHR_SIZE, ymax - ymin + ENEMY_CHR_SIZE };
 }
 
+int EnemyMaster::GetBlankBullet()
+{
+	for (int i = 0; i < ENEMY_MAX_BULLET_NUM; i++)
+	{
+		if (Gun_[i]->isAlive_ == false)
+			return i;
+	}
+	return ENEMY_MAX_BULLET_NUM;
+}
+
 EnemyMaster::EnemyMaster()
 	:GameChara()
 {

@@ -1,12 +1,27 @@
 ﻿#include "stdafx.h"
 #include "Bullet.h"
 
-Bullet::Bullet(Vec2 _pos)
+Bullet::Bullet(Texture& _tex, Vec2 _pos, Vec2 _dir, double _speed)
 {
+	tex_ = _tex;
+	renderSize_ = BULLET_CHR_SIZE;
+	rectSize_ = BULLET_RECT_SIZE;
+	pos_ = _pos;
+	speed_ = _speed;
+	SetCharaRect(rectSize_);
+	moveDir_ = _dir;
+	isAlive_ = true;//弾は生まれたらかならずどっかに飛んでく
+}
+
+Bullet::Bullet(Vec2 _pos)
+	:GameChara(BULLET_INIT_POS)
+{
+	renderSize_ = BULLET_CHR_SIZE;
+	rectSize_ = BULLET_RECT_SIZE;
 	pos_ = _pos;
 	speed_ = BULLET_MOVE_SPEED;
 	tex_ = TextureAsset(U"BULLET");
-	SetCharaRect(SizeF{ BULLET_RECT_SIZE, BULLET_RECT_SIZE });
+	SetCharaRect(rectSize_);
 	moveDir_ = { 0, -1 };
 	isAlive_ = true;
 }
@@ -14,20 +29,36 @@ Bullet::Bullet(Vec2 _pos)
 Bullet::Bullet()
 	:GameChara(BULLET_INIT_POS)
 {
+	renderSize_ = BULLET_CHR_SIZE;
+	rectSize_ = BULLET_RECT_SIZE;
 	speed_ = BULLET_MOVE_SPEED;
 	tex_ = TextureAsset(U"BULLET");
-	SetCharaRect(SizeF{ BULLET_RECT_SIZE, BULLET_RECT_SIZE });
+	SetCharaRect(rectSize_);
 	moveDir_ = { 0, -1 };
-	isAlive_ = false;
+	isAlive_ = true;
+}
+
+void Bullet::SetRenderSize(SizeF _rendersize)
+{
+}
+
+void Bullet::SetBBRectSize(SizeF _rectsize)
+{
 }
 
 void Bullet::Update()
 {
 	if (isAlive_) {
 		pos_ = pos_ + moveDir_ * speed_ * Scene::DeltaTime();
-		SetCharaRect({ BULLET_CHR_SIZE, BULLET_CHR_SIZE });
+		SetCharaRect(rectSize_);
 	}
-	if (pos_.y < 0) {
+	//if (pos_.y < 0) {
+	//	isAlive_ = false;
+	//	pos_ = BULLET_INIT_POS;
+	//}
+	//画面の中に弾は存在するか
+	if (!Scene::Rect().intersects(pos_))
+	{
 		isAlive_ = false;
 		pos_ = BULLET_INIT_POS;
 	}
@@ -36,7 +67,7 @@ void Bullet::Update()
 void Bullet::Draw()
 {
 	if (isAlive_) {
-		tex_.resized(BULLET_CHR_SIZE).drawAt(pos_);
+		tex_.resized(renderSize_).drawAt(pos_);
 		//rect_.drawFrame(1, 1, Palette::Red);
 	}
 }

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "GameChara.h"
 
+
 const int EnemyInLine{ 8 };
 const int EnemyLines{ 5 };
 const int EnemyNum{ EnemyInLine * EnemyLines };

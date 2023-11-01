@@ -16,7 +16,7 @@ namespace SIV3DMAIN
 		TextureAsset::Register(U"EXPLOSION", U"images\\explosion.png");
 		TextureAsset::Register(U"BGIMAGE", U"images\\bg.png");
 
-
+		Window::Resize(1024, 768);
 		// 背景の色を設定する | Set the background color
 		Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
 	}

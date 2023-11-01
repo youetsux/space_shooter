@@ -2,13 +2,17 @@
 #include "GameChara.h"
 #include <vector>
 
+const int ENEMY_MAX_BULLET_NUM{ 10 };
 using std::vector;
 class Enemy;
+class Bullet;
 
 class EnemyMaster :
     public GameChara
 {
+	vector<Bullet *> Gun_;
 	void SetEnemiesRect();//敵全体を囲うバウンディングボックス
+	int GetBlankBullet();
 public:
 	EnemyMaster();
 	~EnemyMaster();
