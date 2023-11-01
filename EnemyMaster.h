@@ -13,9 +13,7 @@ class Bullet;
 class EnemyMaster :
     public GameChara
 {
-	vector<Bullet *> Gun_;
 	void SetEnemiesRect();//敵全体を囲うバウンディングボックス
-	int GetBlankBullet();
 	CDTIMER timer_;
 public:
 	EnemyMaster();

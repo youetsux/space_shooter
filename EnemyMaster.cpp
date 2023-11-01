@@ -2,7 +2,7 @@
 #include "EnemyMaster.h"
 #include "Enemy.h"
 #include <algorithm>
-#include "Bullet.h"
+//#include "Bullet.h"
 
 void EnemyMaster::SetEnemiesRect()
 {
@@ -27,15 +27,15 @@ void EnemyMaster::SetEnemiesRect()
 	rect_ = { {Vec2{xmin, ymin} - adjustVal}, xmax - xmin + ENEMY_CHR_SIZE, ymax - ymin + ENEMY_CHR_SIZE };
 }
 
-int EnemyMaster::GetBlankBullet()
-{
-	for (int i = 0; i < ENEMY_MAX_BULLET_NUM; i++)
-	{
-		if (Gun_[i]->isAlive_ == false)
-			return i;
-	}
-	return ENEMY_MAX_BULLET_NUM;
-}
+//int EnemyMaster::GetBlankBullet()
+//{
+//	for (int i = 0; i < ENEMY_MAX_BULLET_NUM; i++)
+//	{
+//		if (Gun_[i]->isAlive_ == false)
+//			return i;
+//	}
+//	return ENEMY_MAX_BULLET_NUM;
+//}
 
 EnemyMaster::EnemyMaster()
 	:GameChara(),timer_(ENEMY_SHOT_INTERVAL)
@@ -83,13 +83,13 @@ void EnemyMaster::InitializeEnemies()
 	SetEnemiesRect(); //全体枠自体の更新
 	moveDir_ = { 1.0, 0.0 };//全体枠の移動方向も、エネミー個体と同じ
 
-	for (int i = 0; i < ENEMY_MAX_BULLET_NUM; i++)
-	{
-		Bullet* p = nullptr;
-		Texture t = TextureAsset(U"EBULLET");
-		p = new Bullet(t, {0.0,0.0}, {0.0,1.0}, 150);
-		Gun_.push_back(p); //あとでReleaseでdeleteしてね
-	}
+	//for (int i = 0; i < ENEMY_MAX_BULLET_NUM; i++)
+	//{
+	//	Bullet* p = nullptr;
+	//	Texture t = TextureAsset(U"EBULLET");
+	//	p = new Bullet(t, {0.0,0.0}, {0.0,1.0}, 150);
+	//	Gun_.push_back(p); //あとでReleaseでdeleteしてね
+	//}
 
 }
 
@@ -113,38 +113,24 @@ void EnemyMaster::Update()
 
 	for (auto& theI : enemies)
 		theI->Update();
-	//Print << timer_.CDTimer_;
+
 	SetEnemiesRect();//全体枠（黄色）を再設定
 
 	if (timer_.IsTimeOver())
 	{
 		int num = Random(0, (int)(enemies.size()-1));
-		if (enemies[num]->isActive())
-		{
-			int gnum = GetBlankBullet();
-			if (gnum == ENEMY_MAX_BULLET_NUM)
-				return;
-			Gun_[gnum]->ActivateMe();
-			Gun_[gnum]->SetPosition(enemies[num]->pos_);
-		}
+		enemies[num]->Shot();
+
 		timer_.ResetTimer();
 	}
 	else
 		timer_.Update();
-	for (auto& theI : Gun_)
-		theI->Update();
+
 }
 
 void EnemyMaster::Draw()
 {
-	for (auto& theI : Gun_)
-	{
-		if (theI->isActive())
-			theI->Draw();
-	}
 	for (auto& theI : enemies) {
 		theI->Draw();
 	}
-
-	//rect_.drawFrame(1, 1, Palette::Yellow);
 }
