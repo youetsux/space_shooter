@@ -40,10 +40,12 @@ Bullet::Bullet()
 
 void Bullet::SetRenderSize(SizeF _rendersize)
 {
+	renderSize_ = _rendersize;
 }
 
 void Bullet::SetBBRectSize(SizeF _rectsize)
 {
+	rectSize_ = _rectsize;
 }
 
 void Bullet::Update()
@@ -54,10 +56,7 @@ void Bullet::Update()
 	}
 	else
 		return;
-	//if (pos_.y < 0) {
-	//	isAlive_ = false;
-	//	pos_ = BULLET_INIT_POS;
-	//}
+
 	//画面の中に弾は存在するか
 	if (!Scene::Rect().intersects(pos_))
 	{

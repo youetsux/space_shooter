@@ -15,6 +15,7 @@ class Bullet :
 	SizeF rectSize_;
 public:
 	Bullet(Texture& _tex, Vec2 _pos, Vec2 _dir, double _speed);
+	Bullet(Texture& _tex) { tex_ = _tex; }
 	Bullet(Vec2 _pos);
 	Bullet();
 	void SetRenderSize(SizeF _rendersize);
