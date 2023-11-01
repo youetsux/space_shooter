@@ -1,8 +1,11 @@
 ﻿#pragma once
 #include "GameChara.h"
 #include <vector>
+#include "CDTIMER.h"
 
 const int ENEMY_MAX_BULLET_NUM{ 10 };
+const double ENEMY_SHOT_INTERVAL{ 1 };
+
 using std::vector;
 class Enemy;
 class Bullet;
@@ -13,6 +16,7 @@ class EnemyMaster :
 	vector<Bullet *> Gun_;
 	void SetEnemiesRect();//敵全体を囲うバウンディングボックス
 	int GetBlankBullet();
+	CDTIMER timer_;
 public:
 	EnemyMaster();
 	~EnemyMaster();

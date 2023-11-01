@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "GameChara.h"
 #include <vector>
+#include "CDTIMER.h"
+
 using std::vector;
 
 const int EXPLOSION_CHR_SIZE{ 48 }; //がぞうさいず
@@ -14,17 +16,7 @@ class ExplosionEffect :
     public GameChara
 {
 	int frameNum;//今のアニメフレームは何フレーム目？
-	class CDTIMER {
-	public:
-		CDTIMER() :CDTimer_(ANIME_INTERVAL), isTimerRun_(true) {}
-		double CDTimer_;
-		bool IsTimeOver();
-		void ResetTimer();
-		void StartTimer();
-		void STopTimer();
-		bool isTimerRun_;
-		void Update();
-	};
+
 	CDTIMER CDTimer_;
 	vector<RectF> frames_;
 public:

@@ -13,6 +13,7 @@ namespace SIV3DMAIN
 		TextureAsset::Register(U"PLAYER", U"images\\ships\\2.png");
 		TextureAsset::Register(U"ENEMY", U"images\\ships\\9.png");
 		TextureAsset::Register(U"BULLET", U"images\\shots\\3.png");
+		TextureAsset::Register(U"EBULLET", U"images\\shots\\4.png");
 		TextureAsset::Register(U"EXPLOSION", U"images\\explosion.png");
 		TextureAsset::Register(U"BGIMAGE", U"images\\bg.png");
 
@@ -75,8 +76,8 @@ void PlayerVSEnemies(Player* p, EnemyMaster* em)
 				continue;
 			if (theJ->IsMyRectHit(theI->GetCharaRect()))
 			{
-				ExplosionEffect* p = new ExplosionEffect(theI->pos_);
-				objList.push_back(p);
+				ExplosionEffect* ef = new ExplosionEffect(theI->pos_);
+				objList.push_back(ef);
 				theJ->DeActivateMe();
 				theI->DeActivateMe();
 			}

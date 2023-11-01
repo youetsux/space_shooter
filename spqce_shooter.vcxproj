@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="CDTIMER.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyMaster.cpp" />
     <ClCompile Include="ExplosionEffect.cpp" />
@@ -322,6 +323,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="CDTIMER.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyMaster.h" />
     <ClInclude Include="ExplosionEffect.h" />

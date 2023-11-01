@@ -46,29 +46,3 @@ void ExplosionEffect::Update()
 		CDTimer_.Update();
 }
 
-bool ExplosionEffect::CDTIMER::IsTimeOver()
-{
-	return(CDTimer_ < 0);
-}
-
-void ExplosionEffect::CDTIMER::ResetTimer()
-{
-	CDTimer_ = ANIME_INTERVAL;
-	StartTimer();
-}
-
-void ExplosionEffect::CDTIMER::StartTimer()
-{
-	isTimerRun_ = true;
-}
-
-void ExplosionEffect::CDTIMER::STopTimer()
-{
-	isTimerRun_ = false;
-}
-
-void ExplosionEffect::CDTIMER::Update()
-{
-	if (isTimerRun_)
-		CDTimer_ = CDTimer_ - Scene::DeltaTime();
-}

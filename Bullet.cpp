@@ -10,7 +10,7 @@ Bullet::Bullet(Texture& _tex, Vec2 _pos, Vec2 _dir, double _speed)
 	speed_ = _speed;
 	SetCharaRect(rectSize_);
 	moveDir_ = _dir;
-	isAlive_ = true;//弾は生まれたらかならずどっかに飛んでく
+	isAlive_ = false;
 }
 
 Bullet::Bullet(Vec2 _pos)
@@ -52,6 +52,8 @@ void Bullet::Update()
 		pos_ = pos_ + moveDir_ * speed_ * Scene::DeltaTime();
 		SetCharaRect(rectSize_);
 	}
+	else
+		return;
 	//if (pos_.y < 0) {
 	//	isAlive_ = false;
 	//	pos_ = BULLET_INIT_POS;

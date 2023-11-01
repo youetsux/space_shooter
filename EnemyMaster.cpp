@@ -2,6 +2,7 @@
 #include "EnemyMaster.h"
 #include "Enemy.h"
 #include <algorithm>
+#include "Bullet.h"
 
 void EnemyMaster::SetEnemiesRect()
 {
@@ -37,9 +38,10 @@ int EnemyMaster::GetBlankBullet()
 }
 
 EnemyMaster::EnemyMaster()
-	:GameChara()
+	:GameChara(),timer_(ENEMY_SHOT_INTERVAL)
 {
 	SetSpeed(ENEMY_MOVE_SPEED);
+
 }
 
 EnemyMaster::~EnemyMaster()
@@ -77,9 +79,18 @@ void EnemyMaster::InitializeEnemies()
 		}
 	}
 
-	speed_ = ENEMY_MOVE_SPEED; //枠の移動スピードも、エネミー個体と同じ
+	speed_ = ENEMY_MOVE_SPEED; //全体枠の移動スピードも、エネミー個体と同じ
 	SetEnemiesRect(); //全体枠自体の更新
-	moveDir_ = { 1.0, 0.0 };//枠の移動方向も、エネミー個体と同じ
+	moveDir_ = { 1.0, 0.0 };//全体枠の移動方向も、エネミー個体と同じ
+
+	for (int i = 0; i < ENEMY_MAX_BULLET_NUM; i++)
+	{
+		Bullet* p = nullptr;
+		Texture t = TextureAsset(U"EBULLET");
+		p = new Bullet(t, {0.0,0.0}, {0.0,1.0}, 150);
+		Gun_.push_back(p); //あとでReleaseでdeleteしてね
+	}
+
 }
 
 //今はキーボードで左右に敵が動いているけど、
@@ -102,13 +113,38 @@ void EnemyMaster::Update()
 
 	for (auto& theI : enemies)
 		theI->Update();
+	//Print << timer_.CDTimer_;
 	SetEnemiesRect();//全体枠（黄色）を再設定
+
+	if (timer_.IsTimeOver())
+	{
+		int num = Random(0, (int)(enemies.size()-1));
+		if (enemies[num]->isActive())
+		{
+			int gnum = GetBlankBullet();
+			if (gnum == ENEMY_MAX_BULLET_NUM)
+				return;
+			Gun_[gnum]->ActivateMe();
+			Gun_[gnum]->SetPosition(enemies[num]->pos_);
+		}
+		timer_.ResetTimer();
+	}
+	else
+		timer_.Update();
+	for (auto& theI : Gun_)
+		theI->Update();
 }
 
 void EnemyMaster::Draw()
 {
+	for (auto& theI : Gun_)
+	{
+		if (theI->isActive())
+			theI->Draw();
+	}
 	for (auto& theI : enemies) {
 		theI->Draw();
 	}
+
 	//rect_.drawFrame(1, 1, Palette::Yellow);
 }
